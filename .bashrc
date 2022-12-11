@@ -1,15 +1,28 @@
-# .bashrc
+#
+# ~/.bashrc
+#
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-# User specific environment
-PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-export PATH
+# ls aliases
+alias ls='exa --color=auto'
+alias sl='exa --color=auto'
+alias ll='exa -la --color=auto'
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+# git aliases
+alias gs='git status'
+alias gcm='git commit -m'
+alias config='git --git-dir=$HOME/config-files/ --work-tree=$HOME'
 
-# User specific aliases and functions
+# aliases
+alias ..='cd ..'
+
+
+PS1='[\u@\h \W]\$ '
+
+# starship prompt
+eval "$(starship init bash)"
+
+# colorscript
+colorscript random
