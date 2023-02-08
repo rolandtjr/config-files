@@ -9,11 +9,18 @@ set copyindent
 
 set number
 
+set laststatus=2
+" 
+call plug#begin(expand('~/.vim/plugged'))
+" Color Scheme
+Plug 'arcticicestudio/nord-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-css-color'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'preservim/nerdtree'
+call plug#end()
+
 colorscheme nord
-let g:airline_theme='base16_nord'
-
-" python3 from powerline.vim import setup as powerline_setup
-" python3 powerline_setup()
-" python3 del powerline_setup
-
-" set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }

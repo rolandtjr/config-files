@@ -107,7 +107,6 @@ xorgxrdp-glamor 0.2.18-1
 xrdp 0.9.19-2
 xsel 1.2.0.20200527-2
 yasm 1.3.0-5
-yay 11.3.1-1
 zip 3.0-10
 zsh 5.9-1
 nerd-fonts-git 1:2.3.0.RC.r58.g498ebf372-1
@@ -117,4 +116,3 @@ shell-color-scripts 1.1.r105.ae5a9c8-1
 spotify-tui 0.25.0-2
 xorgxrdp-glamor 0.2.18-1
 xrdp 0.9.19-2
-yay 11.3.1-1

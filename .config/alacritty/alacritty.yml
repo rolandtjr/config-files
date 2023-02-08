@@ -7,9 +7,22 @@
 # License:    MIT
 # References:
 #   https://github.com/alacritty/alacritty
-window:
-  opacity: .80
 
+key_bindings:
+    - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+
+dynamic_title: true
+
+window:
+  opacity: .95
+
+font:
+  normal:
+    family: "Hack Nerd Font Mono"
+  bold:
+    family: "Hack Nerd Font Mono"
+  italic:
+    family: "Hack Nerd Font Mono"
 
 colors:
   primary:
