@@ -5,7 +5,6 @@ abbr ip 'ip --color=auto'
 
 abbr gs 'git status'
 abbr gcm 'git commit -m'
-abbr config 'git --git-dir=$HOME/config-files/ --work-tree=$HOME'
 
 abbr .. 'cd ..'
 abbr vi 'vim'

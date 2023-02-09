@@ -18,6 +18,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-css-color'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'preservim/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 colorscheme nord
