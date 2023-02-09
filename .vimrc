@@ -1,6 +1,7 @@
 syntax enable
 filetype plugin indent on
 
+set encoding=UTF-8
 set smartindent
 set tabstop=4
 set shiftwidth=4
@@ -22,6 +23,7 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 colorscheme nord
