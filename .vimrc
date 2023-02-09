@@ -10,6 +10,8 @@ set copyindent
 set number
 
 set laststatus=2
+
+nnoremap <C-g> :NERDTreeToggle<CR>
 " 
 call plug#begin(expand('~/.vim/plugged'))
 " Color Scheme
