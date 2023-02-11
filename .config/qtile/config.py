@@ -61,6 +61,7 @@ nord = {
         'nord14':'#A3BE8C',
         'nord15':'#B48EAD',
        }
+
 # Keys
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -181,20 +182,12 @@ for i in groups:
                 lazy.group[i.name].toscreen(),
                 desc=f"Switch to group {i.name}",
             ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
-            #Key(
-                #[mod, "shift"],
-                #i.name,
-                #lazy.window.togroup(i.name, switch_group=True),
-                #desc=f"Switch to & move focused window to group {i.name}",
-            #),
-            # Or, use below if you prefer not to switch to that group.
             # mod1 + shift + letter of group = move focused window to group
             Key(
                 [mod, "shift"],
                 i.name,
-                lazy.window.togroup(i.name),
-                desc=f"move focused window to group {i.name}",
+                lazy.window.togroup(i.name, switch_group=False),
+                desc=f"Move focused window to group {i.name}",
             ),
         ]
     )
@@ -296,7 +289,15 @@ groups.extend(
         ])
 
 layouts = [
-    #layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    #layout.Columns(
+    #    #border_focus_stack=[nord['nord11'], "#8f3d3d"],
+    #    border_focus_stack=nord['nord11'],
+    #    border_focus=nord['nord11'],
+    #    border_normal_stack=nord['nord10'],
+    #    border_normal=nord['nord10'],
+    #    border_width=4,
+    #    margin=[4,2,4,2],
+    # ),
     #layout.Stack(num_stacks=2),
     #layout.Bsp(),
     layout.MonadTall(
@@ -944,6 +945,7 @@ floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
+        vm_match,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
