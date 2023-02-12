@@ -232,58 +232,72 @@ groups.extend(
             DropDown(
                 "term",
                 terminal_opaque,
-                on_focus_lost_hide=False,
-                opacity=1.0,
-                height=0.5,
-                y=0.1,
+                config = {
+                    'on_focus_lost_hide':False,
+                    'opacity':1.0,
+                    'height':0.5,
+                    'y':0.1,
+                    },
                 ),
             DropDown(
                 "ipython",
                 ipython,
-                on_focus_lost_hide=False,
-                opacity=1.0,
-                height=0.9,
-                y=0.05,
+                config = {
+                    'on_focus_lost_hide':False,
+                    'opacity':1.0,
+                    'height':0.9,
+                    'y':0.05,
+                    },
                 ),
             DropDown(
                 "python",
                 python,
-                on_focus_lost_hide=False,
-                opacity=1.0,
-                height=0.9,
-                y=0.05,
+                config = {
+                    'on_focus_lost_hide':False,
+                    'opacity':1.0,
+                    'height':0.9,
+                    'y':0.05,
+                    },
                 ),
             DropDown(
                 "qtile-config",
                 qtile_config,
-                on_focus_lost_hide=False,
-                opacity=1.0,
-                height=0.9,
-                y=0.05,
+                config = {
+                    'on_focus_lost_hide':False,
+                    'opacity':1.0,
+                    'height':0.9,
+                    'y':0.05,
+                    },
                 ),
             DropDown(
                 "vpn",
                 vpn_vta,
-                on_focus_lost_hide=True,
-                opacity=1.0,
-                height=0.5,
-                y=0.1,
+                config = {
+                    'on_focus_lost_hide':True,
+                    'opacity':1.0,
+                    'height':0.5,
+                    'y':0.1,
+                    },
                 ),
             DropDown(
                 "xrdp",
                 rdp,
-                on_focus_lost_hide=True,
-                opacity=1.0,
-                height=0.5,
-                y=0.1,
+                config = {
+                    'on_focus_lost_hide':True,
+                    'opacity':1.0,
+                    'height':0.5,
+                    'y':0.1,
+                    },
                 ),
             DropDown(
                 "hotkeys",
                 hotkeys,
-                on_focus_lost_hide=True,
-                opacity=1.0,
-                height=0.5,
-                y=0.01,
+                config = {
+                    'on_focus_lost_hide':True,
+                    'opacity':1.0,
+                    'height':0.5,
+                    'y':0.1,
+                    },
                 ),
             ])
         ])
@@ -401,16 +415,12 @@ def parse_task_text(text):
     return text
 
 
-def get_wallpaper():
-    size = run(["xdpyinfo | rg dimensions | awk '{ print $2 }'"],
+def get_wallpaper(screen_number):
+    screens = run(["xrandr | grep '*' | awk '{ print $1 }'"],
                shell=True, 
                capture_output=True,
                encoding='utf-8')
-    size = size.stdout.strip()
-    width, height = size.split('x')
-    print(f'{size =}', type(size))
-
-    wallpaper = f'{qtile_dir}not_supported.png'
+    size = screens.stdout.split()[screen_number]
 
     match size:
         case '3440x1440':
@@ -423,6 +433,8 @@ def get_wallpaper():
             wallpaper = f'{qtile_dir}gunter_throne.png'
         case '1760x1262':
             wallpaper = f'{qtile_dir}gunter_throne_1760x1262.png'
+        case _:
+            wallpaper = f'{qtile_dir}not_supported.png'
 
     return wallpaper
 
@@ -598,7 +610,7 @@ screens = [
             border_color=[nord['nord10'], nord['nord10'], nord['nord10'], nord['nord10']],
             margin=4,
         ),
-        wallpaper = get_wallpaper(),
+        wallpaper = get_wallpaper(0),
         wallpaper_mode='fill',
     ),
     Screen( # Screen2
@@ -761,7 +773,7 @@ screens = [
             border_color=[nord['nord10'], nord['nord10'], nord['nord10'], nord['nord10']],
             margin=4,
         ),
-        wallpaper = get_wallpaper(),
+        wallpaper = get_wallpaper(1),
         wallpaper_mode='fill',
     ),
     Screen( # Screen3
@@ -924,7 +936,7 @@ screens = [
             border_color=[nord['nord10'], nord['nord10'], nord['nord10'], nord['nord10']],
             margin=4,
         ),
-        wallpaper = get_wallpaper(),
+        wallpaper = get_wallpaper(2),
         wallpaper_mode='fill',
     ),
 ]
