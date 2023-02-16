@@ -346,51 +346,6 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 # Mirrored widgets
-net = widget.Net(
-            background=nord['nord10'],
-            foreground=nord['nord0'],
-            interface='net0')
-
-memory = widget.Memory(
-            background=nord['nord14'],
-            foreground=nord['nord0'])
-
-cpu = widget.CPU(
-            background=nord['nord13'],
-            foreground=nord['nord0'])
-
-cpu_thermal_sensor = widget.ThermalSensor(
-            background=nord['nord13'],
-            foreground=nord['nord0'],
-           tag_sensor='Package id 0',
-            format='{temp:.0f}{unit}')
-        
-disk_free_root = widget.DF(
-            background=nord['nord12'],
-            foreground=nord['nord0'],
-            warn_space=40,
-            visible_on_warn=True)
-
-disk_free_home = widget.DF(
-            background=nord['nord12'],
-            foreground=nord['nord0'],
-            partition='/home',
-            warn_space=40,
-            visible_on_warn=True)
-
-nvme_thermal_sensor = widget.ThermalSensor(
-            background=nord['nord12'],
-            foreground=nord['nord0'],
-            tag_sensor='Composite',
-            format='NVME: {temp:.0f}{unit}')
-
-weather = widget.OpenWeather(
-            background=nord['nord15'],
-            foreground=nord['nord0'],
-            cityid='4198514',
-            app_key='*****',
-            metric=False)
-
 chord = widget.Chord(
             chords_colors={
                 "launch": (nord['nord13'], nord['nord0']),
@@ -420,7 +375,10 @@ def get_wallpaper(screen_number):
                shell=True, 
                capture_output=True,
                encoding='utf-8')
-    size = screens.stdout.split()[screen_number]
+    try:
+        size = screens.stdout.split()[screen_number]
+    except IndexError:
+        size = screens.stdout.split()[0]
 
     match size:
         case '3440x1440':
