@@ -39,7 +39,7 @@ ipython = f'alacritty {opaque_config} -e ipython'
 python = f'alacritty {opaque_config} -e python'
 vpn_vta = 'alacritty -e /home/roland/.local/bin/vpn'
 rdp = 'alacritty -e /home/roland/.local/bin/bjendal'
-rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 10" -show drun -icon-theme "Papirus" -show-icons'
+rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 12" -show drun -icon-theme "Papirus" -show-icons'
 qtile_dir = '/home/roland/.config/qtile/'
 
 flameshot = '#8800aa'
