@@ -1,0 +1,132 @@
+#!/usr/bin/env python3
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTabWidget, QWidget, QGridLayout, QLabel, QShortcut
+from PyQt5.QtGui import QKeySequence
+
+class TabbedWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        # Set the main window title and size
+        self.setWindowTitle("Display Hotkeys")
+        self.resize(300, 300)
+
+        # Create a tab widget
+        self.tab_widget = QTabWidget()
+        self.setCentralWidget(self.tab_widget)
+
+        # Create the first tab
+        self.tab1 = QWidget()
+        self.tab_widget.addTab(self.tab1, "Hot Keys")
+
+        # Create a vertical layout for the first tab
+        layout1 = QGridLayout()
+        layout1.setHorizontalSpacing(30)
+        layout1.setVerticalSpacing(10)
+
+        with open('/home/roland/.config/qtile/hotkeys.txt', 'r') as file:
+            lines = file.readlines()
+        length = len(lines)
+
+        # Add the numbers 1-100 to the layout
+        column = 0
+        row = 0
+        switch = False
+        even_odd = 0
+        for i in range(length):
+            #print(lines[i])
+            if lines[i] == "0000\n":
+                column += 1
+                row = 0
+                continue
+            if lines[i] == "Super + 1: Switch to group 1\n":
+                switch = True
+                even_odd = i % 2
+            if switch and even_odd == 0:
+                if i % 2 == 0:
+                    label = QLabel(lines[i].strip())
+                    layout1.addWidget(label, row, column)
+                    column += 1
+                    # layout1.addWidget(QLabel('  '), row, column)
+                    # column += 1
+                    continue
+                else:
+                    label = QLabel(lines[i].strip())
+                    layout1.addWidget(label, row, column)
+                    row += 1
+                    column -= 1
+                    continue
+            elif switch and even_odd == 1:
+                if i % 2 == 1:
+                    label = QLabel(lines[i].strip())
+                    layout1.addWidget(label, row, column)
+                    column += 1
+                    # layout1.addWidget(QLabel('  '), row, column)
+                    # column += 1
+                    continue
+                else:
+                    label = QLabel(lines[i].strip())
+                    layout1.addWidget(label, row, column)
+                    row += 1
+                    column -= 1
+                    continue
+            else:
+                label = QLabel(lines[i].strip())
+                layout1.addWidget(label, row, column)
+                row += 1
+
+        # Set the layout for the first tab
+        self.tab1.setLayout(layout1)
+
+        # Create the second tab
+        self.tab2 = QWidget()
+        self.tab_widget.addTab(self.tab2, "Key Chords")
+
+        # Create a vertical layout for the second tab
+        layout2 = QGridLayout()
+        layout2.setHorizontalSpacing(10)
+        layout2.setVerticalSpacing(10)
+        
+        with open('/home/roland/.config/qtile/keychords.txt', 'r') as file:
+            lines = file.readlines()
+        length = len(lines)
+
+        # Add the numbers 101-200 to the layout
+        column = 0
+        row = 0
+        for i in range(length):
+            #print(lines[i])
+            if lines[i] == "0000\n":
+                column += 1
+                row = 0
+                continue
+            row += 1
+            label = QLabel(lines[i].rstrip())
+            layout2.addWidget(label, row, column)
+
+        # Set the layout for the second tab
+        self.tab2.setLayout(layout2)
+
+        # Assign hotkeys to open each tab
+        self.hotkey1 = QShortcut(QKeySequence("Alt+1"), self)
+        self.hotkey1.activated.connect(lambda: self.tab_widget.setCurrentWidget(self.tab1))
+
+        self.hotkey2 = QShortcut(QKeySequence("Alt+2"), self)
+        self.hotkey2.activated.connect(lambda: self.tab_widget.setCurrentWidget(self.tab2))
+
+        # Assign a hotkey to toggle between the tabs
+        self.toggle_key = QShortcut(QKeySequence("Alt+n"), self)
+        self.toggle_key.activated.connect(self.toggle_tabs)
+
+    def toggle_tabs(self):
+        current_index = self.tab_widget.currentIndex()
+        num_tabs = self.tab_widget.count()
+        next_index = (current_index + 1) % num_tabs
+        self.tab_widget.setCurrentIndex(next_index)
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = TabbedWindow()
+    window.show()
+    sys.exit(app.exec_())
