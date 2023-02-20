@@ -41,6 +41,7 @@ vpn_vta = 'alacritty -e /home/roland/.local/bin/vpn'
 rdp = 'alacritty -e /home/roland/.local/bin/bjendal'
 rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 12" -show drun -icon-theme "Papirus" -show-icons'
 qtile_dir = '/home/roland/.config/qtile/'
+hotkeys = '/home/roland/.config/qtile/dhk'
 
 flameshot = '#8800aa'
 nord = {
@@ -78,7 +79,7 @@ keys = [
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-    Key([mod, "shift"], "space", lazy.layout.flip()),
+    Key([mod, "shift"], "space", lazy.layout.flip(), desc="Flip Layout"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
@@ -156,7 +157,7 @@ keys = [
         ],
         name="media",
     ),
-    Key([mod, "shift"], "u", lazy.group['scratchpad'].dropdown_toggle('hotkeys'), desc="Show Hot Keys"),
+    Key([mod, "shift"], "u", lazy.spawn(hotkeys), desc="Show Hotkeys"),
 ]
 
 # Groups
@@ -202,9 +203,14 @@ def get_hot_keys():
            }
 
     hot_keys = []
+    key_chords = []
 
     for key in keys:
         if isinstance(key, Key):
+            if key.desc == "Launch terminal":
+                hot_keys.append("0000\n")
+            if key.desc == "Switch to group 1":
+                hot_keys.append("0000\n")
             key_modifiers = ' + '.join([mod_keys[modifier] for modifier in key.modifiers])
             if len(key.key) == 1:
                 hot_keys.append(f"{key_modifiers} + {key.key}: {key.desc}\n")
@@ -213,20 +219,24 @@ def get_hot_keys():
     for key in keys:
         if isinstance(key, KeyChord):
             key_modifiers = ' + '.join([mod_keys[modifier] for modifier in key.modifiers])
-            hot_keys.append(f"{key_modifiers} + {key.key}: {key.name.upper()}\n")
+            key_chords.append(f"{key_modifiers} + {key.key}: {key.name.upper()}\n")
             for sub in key.submappings:
                 if isinstance(sub, Key):
-                    hot_keys.append(f"  {sub.key}: {sub.desc}\n")
+                    key_chords.append(f"    {sub.key}: {sub.desc}\n")
                 elif isinstance(key, KeyChord):
-                    hot_keys.append(f"  {sub.key}: {sub.name.upper()}\n")
+                    key_chords.append(f"    {sub.key}: {sub.name.upper()}\n")
                     for map in sub.submappings:
-                        hot_keys.append(f"    {map.key}: {map.desc}\n")
+                        key_chords.append(f"        {map.key}: {map.desc}\n")
+            key_chords.append("0000\n")
 
-    return ''.join(hot_keys)
+    return ''.join(hot_keys), ''.join(key_chords)
 
-hot_key_text = get_hot_keys()
+hot_key_text, key_chord_text = get_hot_keys()
 
-hotkeys = f'yad --title "Hotkeys" --text-info --scroll --text="{hot_key_text}"'
+with open('/home/roland/.config/qtile/hotkeys.txt', 'w') as file:
+    file.write(hot_key_text)
+with open('/home/roland/.config/qtile/keychords.txt', 'w') as file:
+    file.write(key_chord_text)
 
 groups.extend(
         [ScratchPad("scratchpad", [
@@ -283,16 +293,6 @@ groups.extend(
             DropDown(
                 "xrdp",
                 rdp,
-                config = {
-                    'on_focus_lost_hide':True,
-                    'opacity':1.0,
-                    'height':0.5,
-                    'y':0.1,
-                    },
-                ),
-            DropDown(
-                "hotkeys",
-                hotkeys,
                 config = {
                     'on_focus_lost_hide':True,
                     'opacity':1.0,
@@ -921,6 +921,8 @@ floating_layout = layout.Floating(
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(wm_class="display_hotkeys"),
+        Match(wm_class="dhk"),
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
     ],
