@@ -107,6 +107,8 @@ keys = [
     Key([mod], "r", lazy.spawn(rofi), desc="Launch rofi"),
     Key([mod], "z", lazy.run_extension(extension.WindowList()), desc="Launch window list"),
     Key([mod, "shift"], "u", lazy.spawn(hotkeys), desc="Show Hotkeys"),
+    Key([mod], "n", lazy.screen.next_group(skip_empty=True), desc="Switch to next group"),
+    Key([mod, "shift"], "n", lazy.screen.prev_group(skip_empty=True), desc="Switch to previous group"),
 
     # LAUNCH chord
     KeyChord([mod], "e", [
@@ -161,11 +163,6 @@ keys = [
         name="media",
     ),
 ]
-
-keys.extend([
-        Key([mod], "n", lazy.screen.next_group(skip_empty=True), desc="Switch to next group"),
-        Key([mod, "shift"], "n", lazy.screen.prev_group(skip_empty=True), desc="Switch to previous group"),
-    ])
 
 # Groups
 groups = [Group(i) for i in "123456"]
