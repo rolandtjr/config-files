@@ -63,6 +63,63 @@ nord = {
         'nord15':'#B48EAD',
        }
 
+
+def parse_task_text(text):
+  """
+  Removes unwanted text from a given task string.
+
+  Args:
+      text (str): The text to be cleaned.
+
+  Returns:
+      str: The cleaned text.
+  """
+  text = text.replace(" \u2014 Mozilla Firefox", "")
+  text = text.replace(" - qutebrowser", "")
+  text = text.replace(" - Discord", "")
+  return text
+
+
+def get_wallpaper(screen_number):
+  """
+  Returns the wallpaper path based on the size of the screen.
+
+  Args:
+      screen_number (int): Index of the screen to get the wallpaper for.
+
+  Returns:
+      str: The wallpaper path for the specified screen size.
+
+  Raises:
+      IndexError: If the specified screen number is out of bounds.
+  """
+  screens = run(
+      ["xrandr | grep '*' | awk '{ print $1 }'"],
+      shell=True,
+      capture_output=True,
+      encoding="utf-8",
+  )
+  try:
+    size = screens.stdout.split()[screen_number]
+  except IndexError:
+    size = screens.stdout.split()[0]
+
+  match size:
+    case "3440x1440":
+      wallpaper = f"{qtile_dir}gunter_wallpaper3440x1440_fill.png"
+    case "1920x1080":
+      wallpaper = f"{qtile_dir}gunter_throne.png"
+    case "3840x1080":
+      wallpaper = f"{qtile_dir}gunter_throne.png"
+    case "5760x1080":
+      wallpaper = f"{qtile_dir}gunter_throne.png"
+    case "1760x1262":
+      wallpaper = f"{qtile_dir}gunter_throne_1760x1262.png"
+    case _:
+      wallpaper = f"{qtile_dir}not_supported.png"
+
+  return wallpaper
+
 # Keys
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -171,11 +228,11 @@ discord_match = Match(wm_class="discord")
 obsidian_match = Match(wm_class="obsidian")
 xrdp_match = Match(wm_class="xfreerdp")
 vm_match = Match(wm_class="VirtualBox Machine")
-groups.extend([Group("7", label='\ue007')])
-groups.extend([Group("8", matches=[obsidian_match], label='\ue13a')])
-groups.extend([Group("9", matches=[discord_match], label='\uf392')])
-groups.extend([Group("0", matches=[xrdp_match], label='\uf512', init=False, persist=False)])
-groups.extend([Group("o", matches=[vm_match], label='\uf511', init=False, persist=False)])
+groups.extend([Group("7", label='\ue007'),
+               Group("8", matches=[obsidian_match], label='\ue13a'),
+               Group("9", matches=[discord_match], label='\uf392'),
+               Group("0", matches=[xrdp_match], label='\uf512', init=False, persist=False),
+               Group("o", matches=[vm_match], label='\uf511', init=False, persist=False)])
 
 for i in groups:
     keys.extend(
@@ -189,6 +246,7 @@ for i in groups:
                 desc=f"Switch to group {i.name}",
             ),
             # mod1 + shift + letter of group = move focused window to group
+            # switch_group=False stays with current group
             Key(
                 [mod, "shift"],
                 i.name,
@@ -197,51 +255,6 @@ for i in groups:
             ),
         ]
     )
-
-
-def get_hot_keys():
-    mod_keys = {
-            'mod4':'Super',
-            'shift':'Shift',
-            'control':'Control',
-            'space':'Space',
-           }
-
-    hot_keys = []
-    key_chords = []
-
-    for key in keys:
-        if isinstance(key, Key):
-            if key.desc == "Launch terminal":
-                hot_keys.append("0000\n")
-            if key.desc == "Switch to group 1":
-                hot_keys.append("0000\n")
-            key_modifiers = ' + '.join([mod_keys[modifier] for modifier in key.modifiers])
-            if len(key.key) == 1:
-                hot_keys.append(f"{key_modifiers} + {key.key}: {key.desc}\n")
-            elif len(key.key) > 1:
-                hot_keys.append(f"{key_modifiers} + {key.key.title()}: {key.desc}\n")
-    for key in keys:
-        if isinstance(key, KeyChord):
-            key_modifiers = ' + '.join([mod_keys[modifier] for modifier in key.modifiers])
-            key_chords.append(f"{key_modifiers} + {key.key}: {key.name.upper()}\n")
-            for sub in key.submappings:
-                if isinstance(sub, Key):
-                    key_chords.append(f"    {sub.key}: {sub.desc}\n")
-                elif isinstance(key, KeyChord):
-                    key_chords.append(f"    {sub.key}: {sub.name.upper()}\n")
-                    for map in sub.submappings:
-                        key_chords.append(f"        {map.key}: {map.desc}\n")
-            key_chords.append("0000\n")
-
-    return ''.join(hot_keys), ''.join(key_chords)
-
-hot_key_text, key_chord_text = get_hot_keys()
-
-with open('/home/roland/.config/qtile/hotkeys.txt', 'w') as file:
-    file.write(hot_key_text)
-with open('/home/roland/.config/qtile/keychords.txt', 'w') as file:
-    file.write(key_chord_text)
 
 groups.extend(
         [ScratchPad("scratchpad", [
@@ -367,40 +380,6 @@ clock = widget.Clock(
             foreground=nord['nord0'],
             padding=4,
             format="%Y-%m-%d %a %H:%M")
-
-
-def parse_task_text(text):
-    text = text.replace(' \u2014 Mozilla Firefox','')
-    text = text.replace(' - qutebrowser','')
-    text = text.replace(' - Discord','')
-    return text
-
-
-def get_wallpaper(screen_number):
-    screens = run(["xrandr | grep '*' | awk '{ print $1 }'"],
-               shell=True, 
-               capture_output=True,
-               encoding='utf-8')
-    try:
-        size = screens.stdout.split()[screen_number]
-    except IndexError:
-        size = screens.stdout.split()[0]
-
-    match size:
-        case '3440x1440':
-            wallpaper = f'{qtile_dir}gunter_wallpaper3440x1440_fill.png'
-        case '1920x1080':
-            wallpaper = f'{qtile_dir}gunter_throne.png'
-        case '3840x1080':
-            wallpaper = f'{qtile_dir}gunter_throne.png'
-        case '5760x1080':
-            wallpaper = f'{qtile_dir}gunter_throne.png'
-        case '1760x1262':
-            wallpaper = f'{qtile_dir}gunter_throne_1760x1262.png'
-        case _:
-            wallpaper = f'{qtile_dir}not_supported.png'
-
-    return wallpaper
 
 screens = [
     Screen( #Screen1
@@ -957,32 +936,54 @@ wl_input_rules = None
 # wmname = "LG3D"
 wmname = f"qtile {VERSION}"
 
-#mod_keys = {
-            #'mod4':'Super',
-            #'shift':'Shift',
-            #'control':'Control',
-            #'space':'Space',
-           #}
-#
-#hot_keys = []
-#
-#for key in keys:
-    #if isinstance(key, Key):
-        #key_modifiers = ' + '.join([mod_keys[modifier] for modifier in key.modifiers])
-        #if len(key.key) == 1:
-            #hot_keys.append(f"{key_modifiers} + {key.key}: {key.desc}\n")
-        #elif len(key.key) > 1:
-            #hot_keys.append(f"{key_modifiers} + {key.key.title()}: {key.desc}\n")
-#for key in keys:
-    #if isinstance(key, KeyChord):
-        #key_modifiers = ' + '.join([mod_keys[modifier] for modifier in key.modifiers])
-        #hot_keys.append(f"{key_modifiers} + {key.key}: {key.name.upper()}\n")
-        #for sub in key.submappings:
-            #if isinstance(sub, Key):
-                #hot_keys.append(f"  {sub.key}: {sub.desc}\n")
-            #elif isinstance(key, KeyChord):
-                #hot_keys.append(f"  {sub.key}: {sub.name.upper()}\n")
-                #for map in sub.submappings:
-                    #hot_keys.append(f"    {map.key}: {map.desc}\n")
-#
-#print(''.join(hot_keys))
+
+def write_hot_keys():
+  """
+  Generates two text files containing the list of hot keys and key chords.
+
+  Writes the list of hot keys and key chords to two separate text files
+  named "hotkeys.txt" and "keychords.txt", respectively. The text files are
+  saved in the directory specified by the qtile_dir variable.
+  """
+  mod_keys = {
+      "mod4": "Super",
+      "shift": "Shift",
+      "control": "Control",
+      "space": "Space",
+  }
+
+  hot_keys = []
+  key_chords = []
+
+  for key in keys:
+    if isinstance(key, Key):
+      if key.desc == "Launch terminal":
+        hot_keys.append("0000\n")
+      if key.desc == "Switch to group 1":
+        hot_keys.append("0000\n")
+      key_modifiers = " + ".join([mod_keys[modifier] for modifier in key.modifiers])
+      if len(key.key) == 1:
+        hot_keys.append(f"{key_modifiers} + {key.key}: {key.desc}\n")
+      elif len(key.key) > 1:
+        hot_keys.append(f"{key_modifiers} + {key.key.title()}: {key.desc}\n")
+
+  for key in keys:
+    if isinstance(key, KeyChord):
+      key_modifiers = " + ".join([mod_keys[modifier] for modifier in key.modifiers])
+      key_chords.append(f"{key_modifiers} + {key.key}: {key.name.upper()}\n")
+      for sub in key.submappings:
+        if isinstance(sub, Key):
+          key_chords.append(f"    {sub.key}: {sub.desc}\n")
+        elif isinstance(key, KeyChord):
+          key_chords.append(f"    {sub.key}: {sub.name.upper()}\n")
+          for map in sub.submappings:
+            key_chords.append(f"        {map.key}: {map.desc}\n")
+      key_chords.append("0000\n")
+
+  with open(f"{qtile_dir}hotkeys.txt", "w") as file:
+    file.write("".join(hot_keys))
+  with open(f"{qtile_dir}keychords.txt", "w") as file:
+    file.write("".join(key_chords))
+
+
+write_hot_keys()
