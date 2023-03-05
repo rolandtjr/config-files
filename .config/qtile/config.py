@@ -41,6 +41,7 @@ vpn_vta = 'alacritty -e /home/roland/.local/bin/vpn'
 rdp = 'alacritty -e /home/roland/.local/bin/bjendal'
 rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 12" -show drun -icon-theme "Papirus" -show-icons'
 qtile_dir = '/home/roland/.config/qtile/'
+wallpaper_dir = '/home/roland/.config/qtile/wallpaper/'
 hotkeys = '/home/roland/.config/qtile/dhk'
 
 flameshot = '#8800aa'
@@ -106,17 +107,17 @@ def get_wallpaper(screen_number):
 
   match size:
     case "3440x1440":
-      wallpaper = f"{qtile_dir}gunter_wallpaper3440x1440_fill.png"
+      wallpaper = f"{wallpaper_dir}gunter_wallpaper3440x1440_fill.png"
     case "1920x1080":
-      wallpaper = f"{qtile_dir}gunter_throne.png"
+      wallpaper = f"{wallpaper_dir}gunter_throne.png"
     case "3840x1080":
-      wallpaper = f"{qtile_dir}gunter_throne.png"
+      wallpaper = f"{wallpaper_dir}gunter_throne.png"
     case "5760x1080":
-      wallpaper = f"{qtile_dir}gunter_throne.png"
+      wallpaper = f"{wallpaper_dir}gunter_throne.png"
     case "1760x1262":
-      wallpaper = f"{qtile_dir}gunter_throne_1760x1262.png"
+      wallpaper = f"{wallpaper_dir}gunter_throne_1760x1262.png"
     case _:
-      wallpaper = f"{qtile_dir}not_supported.png"
+      wallpaper = f"{wallpaper_dir}not_supported.png"
 
   return wallpaper
 
