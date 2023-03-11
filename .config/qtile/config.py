@@ -332,8 +332,8 @@ layouts = [
     #    border_width=4,
     #    margin=[4,2,4,2],
     # ),
-    #layout.Stack(num_stacks=2),
-    #layout.Bsp(),
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
     layout.MonadTall(
         border_focus=nord['nord11'],
         border_normal=nord['nord10'],
@@ -443,7 +443,7 @@ screens = [
                     text_open='\uf101',
                     padding=15,
                     widgets=[
-				        widget.Mpris2(
+                        widget.Mpris2(
 					        name='spotifyd',
 					        #objname=media_player,
     				        format = "{xesam:title} - ({xesam:artist})",
