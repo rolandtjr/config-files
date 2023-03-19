@@ -93,9 +93,9 @@ def get_wallpaper(screen_number):
 
   match size:
     case '3440x1440':
-      wallpaper = f'{wallpaper_dir}gunter_wallpaper3440x1440_fill.png'
+      wallpaper = f'{wallpaper_dir}p3_3440x1440.png'
     case '1920x1080':
-      wallpaper = f'{wallpaper_dir}gunter_throne.png'
+      wallpaper = f'{wallpaper_dir}p2_1920x1080.png'
     case '3840x1080':
       wallpaper = f'{wallpaper_dir}gunter_throne.png'
     case '5760x1080':
@@ -387,7 +387,6 @@ screens = [
                     this_screen_border=nord['nord13'],
                     this_current_screen_border=nord['nord11'],
                     padding=4,
-                    #margin=0,
                 ),
                 widget.Spacer(
                     background=nord['nord0'],
