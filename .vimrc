@@ -24,9 +24,14 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
+Plug 'xuhdev/vim-latex-live-preview'
 call plug#end()
 
 colorscheme nord
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ }
+
+" vim-laxet-live-preview settings
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'zathura'
