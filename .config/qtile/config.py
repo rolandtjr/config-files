@@ -22,6 +22,7 @@ ipython = f'alacritty {opaque_config} -e ipython'
 python = f'alacritty {opaque_config} -e python'
 vpn_vta = 'alacritty -e /home/roland/.local/bin/vpn'
 bjendal = 'alacritty -e /home/roland/.local/bin/bjendal'
+lumar = 'alacritty -e /home/roland/.local/bin/lumar'
 rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 12" -show drun -icon-theme "Papirus" -show-icons'
 qtile_dir = '/home/roland/.config/qtile/'
 wallpaper_dir = '/home/roland/.config/qtile/wallpaper/'
@@ -163,6 +164,7 @@ keys = [
         Key([], "q", lazy.group['scratchpad'].dropdown_toggle('qtile-config'), desc="Launch qtile config"),
         Key([], "v", lazy.group['scratchpad'].dropdown_toggle('vpn'), desc="Launch vpn"),
         Key([], "b", lazy.group['scratchpad'].dropdown_toggle('bjendal'), desc="Launch xrdp: bjendal"),
+        Key([], "l", lazy.group['scratchpad'].dropdown_toggle('lumar'), desc="Launch xrdp: lumar"),
         Key([], "s", lazy.spawn('passmenu'), desc="Launch pass"),
         Key([], "r", lazy.run_extension(extension.DmenuRun(dmenu_prompt = "\uf101")), desc="Launch dmenu"),
         ],
@@ -246,62 +248,58 @@ groups.extend(
             DropDown(
                 'term',
                 terminal_opaque,
-                config = {
-                    'on_focus_lost_hide':False,
-                    'opacity':1.0,
-                    'height':0.5,
-                    'y':0.1,
-                    },
+                on_focus_lost_hide=False,
+                opacity=.9,
+                height=0.8,
+                y=0.1,
                 ),
             DropDown(
                 'ipython',
                 ipython,
-                config = {
-                    'on_focus_lost_hide':False,
-                    'opacity':1.0,
-                    'height':0.9,
-                    'y':0.05,
-                    },
+                on_focus_lost_hide=False,
+                opacity=.9,
+                height=0.8,
+                y=0.1,
                 ),
             DropDown(
                 'python',
                 python,
-                config = {
-                    'on_focus_lost_hide':False,
-                    'opacity':1.0,
-                    'height':0.9,
-                    'y':0.05,
-                    },
+                on_focus_lost_hide=False,
+                opacity=.9,
+                height=0.8,
+                y=0.1,
                 ),
             DropDown(
                 'qtile-config',
                 qtile_config,
-                config = {
-                    'on_focus_lost_hide':False,
-                    'opacity':1.0,
-                    'height':0.9,
-                    'y':0.05,
-                    },
+                on_focus_lost_hide=False,
+                opacity=1.0,
+                height=0.9,
+                y=0.05,
                 ),
             DropDown(
                 'vpn',
                 vpn_vta,
-                config = {
-                    'on_focus_lost_hide':True,
-                    'opacity':1.0,
-                    'height':0.5,
-                    'y':0.1,
-                    },
+                on_focus_lost_hide=True,
+                opacity=1.0,
+                height=0.5,
+                y=0.1,
                 ),
             DropDown(
                 'bjendal',
                 bjendal,
-                config = {
-                    'on_focus_lost_hide':True,
-                    'opacity':1.0,
-                    'height':0.5,
-                    'y':0.1,
-                    },
+                on_focus_lost_hide=True,
+                opacity=1.0,
+                height=0.5,
+                y=0.1,
+                ),
+            DropDown(
+                'lumar',
+                lumar,
+                on_focus_lost_hide=True,
+                opacity=1.0,
+                height=0.5,
+                y=0.1,
                 ),
             ])
         ])

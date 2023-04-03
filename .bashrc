@@ -2,7 +2,6 @@
 # ~/.bashrc
 #
 
-export PYTHONPATH=~/Documents/Course-Material/module-o/book/src
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # If not running interactively, don't do anything
