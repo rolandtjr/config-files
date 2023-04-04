@@ -23,6 +23,7 @@ python = f'alacritty {opaque_config} -e python'
 vpn_vta = 'alacritty -e /home/roland/.local/bin/vpn'
 bjendal = 'alacritty -e /home/roland/.local/bin/bjendal'
 lumar = 'alacritty -e /home/roland/.local/bin/lumar'
+cmatrix = 'alacritty -e cmatrix'
 rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 12" -show drun -icon-theme "Papirus" -show-icons'
 qtile_dir = '/home/roland/.config/qtile/'
 wallpaper_dir = '/home/roland/.config/qtile/wallpaper/'
@@ -167,6 +168,7 @@ keys = [
         Key([], "l", lazy.group['scratchpad'].dropdown_toggle('lumar'), desc="Launch xrdp: lumar"),
         Key([], "s", lazy.spawn('passmenu'), desc="Launch pass"),
         Key([], "r", lazy.run_extension(extension.DmenuRun(dmenu_prompt = "\uf101")), desc="Launch dmenu"),
+        Key([], "m", lazy.spawn(cmatrix), desc="Launch matrix"),
         ],
         #mode=True,
         name="launch",
