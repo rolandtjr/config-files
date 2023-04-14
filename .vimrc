@@ -25,6 +25,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
 Plug 'xuhdev/vim-latex-live-preview'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 colorscheme nord

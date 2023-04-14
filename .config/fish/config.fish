@@ -5,10 +5,19 @@ set --export MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set --export QT_QPA_PLATFORMTHEME "gtk2"
 
 if status is-interactive
+
     # Commands to run in interactive sessions can go here
 end
 
+# Start X at login
+if status --is-login
+  if test -z "$DISPLAY" -a $XDG_VTNR = 1
+    exec startx -- -keeptty
+  end
+end
+
 fish_add_path "$HOME/.local/bin"
+fish_add_path "$HOME/.cargo/bin"
 
 source "$HOME/.config/fish/abbreviations.fish"
 
