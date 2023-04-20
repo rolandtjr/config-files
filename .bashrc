@@ -13,7 +13,7 @@ alias sl='exa --color=auto'
 alias ll='exa -la --color=auto'
 
 # git aliases
-alias gs='git status'
+alias gss='git status'
 alias gcm='git commit -m'
 alias config='git --git-dir=$HOME/config-files/ --work-tree=$HOME'
 

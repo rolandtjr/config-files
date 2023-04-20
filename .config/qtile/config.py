@@ -61,6 +61,7 @@ def parse_task_text(text):
   text = text.replace(' \u2014 Mozilla Firefox', '')
   text = text.replace(' - qutebrowser', '')
   text = text.replace(' - Discord', '')
+  text = text.replace(' - Chromium', '')
   return text
 
 
@@ -320,13 +321,6 @@ layouts = [
     # ),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
-    layout.MonadTall(
-        border_focus=nord['nord11'],
-        border_normal=nord['nord10'],
-        border_width=4,
-        margin=4
-    ),
-    layout.Max(),
     layout.MonadThreeCol(
         main_centered=True,
         new_client_position='after_current',
@@ -335,6 +329,13 @@ layouts = [
         border_width=4,
         margin=4
         ),
+    layout.Max(),
+    layout.MonadTall(
+        border_focus=nord['nord11'],
+        border_normal=nord['nord10'],
+        border_width=4,
+        margin=4
+    ),
     #layout.MonadWide(),
     #layout.RatioTile(),
     #layout.Spiral(),
