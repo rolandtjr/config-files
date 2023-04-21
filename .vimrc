@@ -8,7 +8,7 @@ set shiftwidth=4
 set expandtab
 set copyindent
 
-set number
+set number relativenumber
 
 set laststatus=2
 
@@ -26,6 +26,7 @@ Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'rust-lang/rust.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 colorscheme nord
