@@ -27,6 +27,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'xuhdev/vim-latex-live-preview'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'takac/vim-hardtime'
 call plug#end()
 
 colorscheme nord
@@ -37,3 +38,4 @@ let g:lightline = {
 " vim-laxet-live-preview settings
 autocmd Filetype tex setl updatetime=1
 let g:livepreview_previewer = 'zathura'
+let g:hardtime_default_on = 1

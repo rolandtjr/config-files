@@ -122,14 +122,16 @@ keys = [
     Key([mod], 'l', lazy.layout.right(), desc='Move focus to right'),
     Key([mod], 'j', lazy.layout.down(), desc='Move focus down'),
     Key([mod], 'k', lazy.layout.up(), desc='Move focus up'),
-    Key([mod], 'space', lazy.layout.next(), desc='Move window focus to other window'),
+    Key([mod], 'space', lazy.layout.next(), desc='Move window focus to next window'),
+    Key([mod, 'shift'], 'space',  lazy.layout.previous(), desc='Move window focus to previous window'),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key([mod, 'shift'], 'h', lazy.layout.shuffle_left(), desc='Move window to the left'),
     Key([mod, 'shift'], 'l', lazy.layout.shuffle_right(), desc='Move window to the right'),
     Key([mod, 'shift'], 'j', lazy.layout.shuffle_down(), desc='Move window down'),
     Key([mod, 'shift'], 'k', lazy.layout.shuffle_up(), desc='Move window up'),
-    Key([mod, 'shift'], 'space', lazy.layout.flip(), desc='Flip Layout'),
+    Key([mod, 'shift'], 'i', lazy.layout.swap_column_left(), desc='Swap window left'),
+    Key([mod, 'shift'], 'u', lazy.layout.swap_column_right(), desc='Swap window right'),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, 'control'], 'h', lazy.layout.grow_left(), desc='Grow window to the left'),
@@ -156,7 +158,7 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawn(rofi), desc="Launch rofi"),
-    Key([mod, "shift"], "u", lazy.spawn(hotkeys), desc="Show Hotkeys"),
+    Key([mod, "shift"], "y", lazy.spawn(hotkeys), desc="Show Hotkeys"),
     Key([mod], "n", lazy.screen.next_group(skip_empty=True), desc="Switch to next group"),
     Key([mod, "shift"], "n", lazy.screen.prev_group(skip_empty=True), desc="Switch to previous group"),
 
@@ -280,7 +282,9 @@ groups.extend(
                 on_focus_lost_hide=False,
                 opacity=1.0,
                 height=0.9,
+                width=0.5,
                 y=0.05,
+                x=0.25,
                 ),
             DropDown(
                 'vpn',
@@ -310,17 +314,6 @@ groups.extend(
         ])
 
 layouts = [
-    #layout.Columns(
-    #    #border_focus_stack=[nord['nord11'], "#8f3d3d"],
-    #    border_focus_stack=nord['nord11'],
-    #    border_focus=nord['nord11'],
-    #    border_normal_stack=nord['nord10'],
-    #    border_normal=nord['nord10'],
-    #    border_width=4,
-    #    margin=[4,2,4,2],
-    # ),
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
     layout.MonadThreeCol(
         main_centered=True,
         new_client_position='after_current',
@@ -329,20 +322,24 @@ layouts = [
         border_width=4,
         margin=4
         ),
-    layout.Max(),
-    layout.MonadTall(
+    layout.Columns(
+        num_columns=5,
+        border_focus_stack=nord['nord11'],
         border_focus=nord['nord11'],
+        border_normal_stack=nord['nord10'],
         border_normal=nord['nord10'],
+        border_on_single=True,
         border_width=4,
-        margin=4
+        margin=[4,2,4,2],
+        margin_on_single=[4,2,4,2],
     ),
-    #layout.MonadWide(),
-    #layout.RatioTile(),
-    #layout.Spiral(),
-    #layout.Tile(),
-    #layout.TreeTab(),
-    #layout.VerticalTile(),
-    #layout.Zoomy(),
+    # layout.Max(),
+    # layout.MonadTall(
+    #     border_focus=nord['nord11'],
+    #     border_normal=nord['nord10'],
+    #     border_width=4,
+    #     margin=4
+    # ),
 ]
 
 widget_defaults = {
