@@ -98,11 +98,11 @@ def get_wallpaper(screen_number):
     case '3440x1440':
       wallpaper = f'{wallpaper_dir}p3_3440x1440.png'
     case '1920x1080':
-      wallpaper = f'{wallpaper_dir}p2_1920x1080.png'
+      wallpaper = f'{wallpaper_dir}p3_1920x1080.png'
     case '3840x1080':
       wallpaper = f'{wallpaper_dir}gunter_throne.png'
     case '5120x1440':
-      wallpaper = f'{wallpaper_dir}p4_5120x1440.png'
+      wallpaper = f'{wallpaper_dir}p5_5120x1440.png'
     case '5760x1080':
       wallpaper = f'{wallpaper_dir}gunter_throne.png'
     case '1760x1262':
