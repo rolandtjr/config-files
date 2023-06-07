@@ -6,7 +6,6 @@ r'''
 |_|  \___/|___/_| |_|\__,_|_|        \__, |\__|_|_|\___|
                                         |_|
 '''
-
 from subprocess import run, CalledProcessError
 from libqtile import bar, layout, widget, extension
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, ScratchPad, DropDown
@@ -62,6 +61,7 @@ def parse_task_text(text):
   text = text.replace(' - qutebrowser', '')
   text = text.replace(' - Discord', '')
   text = text.replace(' - Chromium', '')
+  text = text.replace(' - Obsidian v1.3.5', '')
   return text
 
 
