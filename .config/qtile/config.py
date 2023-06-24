@@ -891,6 +891,7 @@ floating_layout = layout.Floating(
         Match(wm_class='ssh-askpass'),  # ssh-askpass
         Match(wm_class='display_hotkeys'),
         Match(wm_class='dhk'),
+        Match(wm_class='pinentry-gtk-2'), # pin entry gpg
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
     ],
