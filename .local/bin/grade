@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+git checkout -b grade
+git add grade.adoc
+git commit -m "Add grade"
+git push --set-upstream origin grade
