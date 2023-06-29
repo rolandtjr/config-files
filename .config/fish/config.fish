@@ -15,10 +15,15 @@ set --export XSECURELOCK_DIM_COLOR "#2E3440"
 set --export XSECURELOCK_NO_COMPOSITE 1
 
 if status is-interactive
+  source "$HOME/.config/fish/abbreviations.fish"
 end
 
 # Start X at login
 if status --is-login
+  fish_add_path "$HOME/.local/bin"
+  fish_add_path "$HOME/.cargo/bin"
+  fish_add_path "/usr/lib/xsecurelock"
+  # Check if DISPLAY is set
   if set -q DISPLAY
     xset s 300 5
     xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
@@ -30,24 +35,5 @@ if status --is-login
     picom --animations --no-fading-openclose -b
   end
 end
-
-switch $DISPLAY
-  case ':10.0'
-    if test -z "$XSECURELOCK_XRDP"
-      set --export XSECURELOCK_XRDP 1
-      xset s 300 5
-      xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
-      pactl set-default-sink xrdp-sink
-      picom --animations --no-fading-openclose -b
-    end
-end
-
-# Check if DISPLAY is set
-
-fish_add_path "$HOME/.local/bin"
-fish_add_path "$HOME/.cargo/bin"
-fish_add_path "/usr/lib/xsecurelock"
-
-source "$HOME/.config/fish/abbreviations.fish"
 
 starship init fish | source
