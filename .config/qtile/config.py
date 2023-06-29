@@ -157,6 +157,7 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod], "p", lazy.spawn('xset s activate'), desc="Lock Session"),
     Key([mod], "r", lazy.spawn(rofi), desc="Launch rofi"),
     Key([mod, "shift"], "y", lazy.spawn(hotkeys), desc="Show Hotkeys"),
     Key([mod], "n", lazy.screen.next_group(skip_empty=True), desc="Switch to next group"),
