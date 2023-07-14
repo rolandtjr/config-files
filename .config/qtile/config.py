@@ -219,14 +219,15 @@ keys = [
 ]
 
 # Groups
-groups = [Group(i) for i in '123456']
+groups = [Group(i) for i in '12345']
 
 discord_match = Match(wm_class='discord')
 obsidian_match = Match(wm_class='obsidian')
 xrdp_match = Match(wm_class='xfreerdp')
 vm_match = Match(wm_class='VirtualBox Machine')
-groups.extend([Group('7', label='\ue007'),
-               Group('8', matches=[obsidian_match], label='\ue13a'),
+groups.extend([Group('6', label='\uf6cc'),
+               Group('7', label='\ue007'),
+               Group('8', matches=[obsidian_match], label='\uf42e'),
                Group('9', matches=[discord_match], label='\uf392'),
                Group('0', matches=[xrdp_match], label='\uf512', init=False, persist=False),
                Group('o', matches=[vm_match], label='\uf511', init=False, persist=False)])
@@ -336,7 +337,7 @@ layouts = [
         margin=[4,2,4,2],
         margin_on_single=[4,2,4,2],
     ),
-    # layout.Max(),
+    layout.Max(),
     # layout.MonadTall(
     #     border_focus=nord['nord11'],
     #     border_normal=nord['nord10'],
@@ -897,6 +898,7 @@ floating_layout = layout.Floating(
         Match(wm_class='pinentry-gtk-2'), # pin entry gpg
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
+        Match(title='Friends List'), # Steam Friends List
     ],
     border_width=4,
     border_focus=nord['nord11'],
