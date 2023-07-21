@@ -338,12 +338,12 @@ layouts = [
         margin_on_single=[4,2,4,2],
     ),
     layout.Max(),
-    # layout.MonadTall(
-    #     border_focus=nord['nord11'],
-    #     border_normal=nord['nord10'],
-    #     border_width=4,
-    #     margin=4
-    # ),
+    layout.MonadTall(
+        border_focus=nord['nord11'],
+        border_normal=nord['nord10'],
+        border_width=4,
+        margin=4
+    ),
 ]
 
 widget_defaults = {
