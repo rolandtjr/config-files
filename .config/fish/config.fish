@@ -3,6 +3,7 @@
 set --export EDITOR "vim"
 set --export PF_INFO "ascii title os host kernel uptime pkgs memory wm shell editor palette"
 set --export MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set --export MANROFFOPT "-c"
 set --export QT_QPA_PLATFORMTHEME "gtk2"
 set --export XSECURELOCK_SAVER saver_xscreensaver
 set --export XSECURELOCK_PASSWORD_PROMPT time_hex
