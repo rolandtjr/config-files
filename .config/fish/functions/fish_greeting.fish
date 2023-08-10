@@ -1,3 +1,3 @@
 function fish_greeting
-  colorscript -e roshar
+  $HOME/.local/bin/rtj_dev_simple
 end

@@ -27,6 +27,7 @@ cmatrix = 'alacritty -e cmatrix'
 rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 12" -show drun -icon-theme "Papirus" -show-icons'
 qtile_dir = '/home/roland/.config/qtile/'
 wallpaper_dir = '/home/roland/.config/qtile/wallpaper/'
+images_dir = '/home/roland/.config/qtile/images/'
 hotkeys = '/home/roland/.config/qtile/dhk'
 nord = {
         'nord0':'#2E3440',
@@ -391,10 +392,20 @@ screens = [
                     background=nord['nord0'],
                     length=4,
                 ),
+                widget.Image(
+                    background=nord['nord0'],
+                    filename=f'{images_dir}rtj_Logo-02.png',
+                    margin=2,
+                    mouse_callbacks={'Button1':lazy.spawn(rofi)},
+                ),
+                widget.Spacer(
+                    background=nord['nord0'],
+                    length=2,
+                ),
                 widget.WindowCount(
                     font='Font Awesome 6 Brands',
                     background=nord['nord0'],
-                    foreground=nord['nord4'],
+                    foreground=nord['nord9'],
                 ),
                 widget.TaskList(
                     background=nord['nord0'],
