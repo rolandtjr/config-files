@@ -519,6 +519,12 @@ screens = [
                         ),
                     ]
                 ),
+                # widget.Image(
+                #     background=nord['nord0'],
+                #     filename=f'{images_dir}/DevSecLife_Logo-01.png',
+                #     margin=2,
+                #     mouse_callbacks={'Button1':lazy.spawn(rofi)},
+                # ),
                 widget.Spacer(
                     background=nord['nord0'],
                     length=6

@@ -23,6 +23,7 @@ end
 if status --is-login
   fish_add_path "$HOME/.local/bin"
   fish_add_path "$HOME/.cargo/bin"
+  fish_add_path "$HOME/go/bin"
   fish_add_path "/usr/lib/xsecurelock"
   fish_add_path "$HOME/.local/share/gem/ruby/3.0.0/bin"
   # Check if DISPLAY is set
