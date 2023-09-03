@@ -41,6 +41,7 @@ fail2ban
 fakeroot
 fd
 figlet
+filezilla
 firefox
 fish
 flameshot
@@ -52,6 +53,7 @@ gcc
 gdb
 gimp
 git-delta
+git-filter-repo
 git-lfs
 glow
 gnome-terminal
@@ -134,6 +136,8 @@ pulseaudio
 pulseaudio-alsa
 pulseaudio-jack
 pulseaudio-module-xrdp
+python-aiohttp
+python-aiosmtpd
 python-black
 python-dbus-next
 python-heatclient
