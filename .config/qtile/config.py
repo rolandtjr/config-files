@@ -6,11 +6,23 @@ r'''
 |_|  \___/|___/_| |_|\__,_|_|        \__, |\__|_|_|\___|
                                         |_|
 '''
-from subprocess import run, CalledProcessError
-from libqtile import bar, layout, widget, extension
-from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen, ScratchPad, DropDown
-from libqtile.scripts.main import VERSION
+from subprocess import CalledProcessError, run
+
+from keys import OPENWEATHER_APP_KEY, OPENWEATHER_CITI_ID
+from libqtile import bar, extension, layout, widget
+from libqtile.config import (
+  Click,
+  Drag,
+  DropDown,
+  Group,
+  Key,
+  KeyChord,
+  Match,
+  ScratchPad,
+  Screen,
+)
 from libqtile.lazy import lazy
+from libqtile.scripts.main import VERSION
 
 mod = 'mod4'
 terminal = 'alacritty'
@@ -442,18 +454,18 @@ screens = [
                     padding=15,
                     widgets=[
                         widget.Mpris2(
-					        name='spotifyd',
-					        #objname=media_player,
-    				        format = '{xesam:title} - ({xesam:artist})',
-    				        playing_text = ' 契 {track}',
-    				        paused_text  = '  {track}',
-    				        width = 400,
-    				        scroll_delay = 5,
-    				        scroll_interval = 0.25,
-    				        scroll_step = 15,
+                            name='spotifyd',
+                            #objname=media_player,
+                            format = '{xesam:title} - ({xesam:artist})',
+                            playing_text = ' 契 {track}',
+                            paused_text  = '  {track}',
+                            width = 400,
+                            scroll_delay = 5,
+                            scroll_interval = 0.25,
+                            scroll_step = 15,
                             background=nord['nord10'],
-    				        foreground=nord['nord0'],
-				        ),
+                            foreground=nord['nord0'],
+                        ),
                         widget.PulseVolume(
                             font='FontAwesome',
                             fmt='\uf028 {}',
@@ -479,8 +491,8 @@ screens = [
                         widget.OpenWeather(
                             background=nord['nord15'],
                             foreground=nord['nord0'],
-                            cityid='4198514',
-                            app_key='*****',
+                            cityid=OPENWEATHER_CITI_ID,
+                            app_key=OPENWEATHER_APP_KEY,
                             metric=False),
                         widget.Net(
                             background=nord['nord10'],
@@ -519,12 +531,6 @@ screens = [
                         ),
                     ]
                 ),
-                # widget.Image(
-                #     background=nord['nord0'],
-                #     filename=f'{images_dir}/DevSecLife_Logo-01.png',
-                #     margin=2,
-                #     mouse_callbacks={'Button1':lazy.spawn(rofi)},
-                # ),
                 widget.Spacer(
                     background=nord['nord0'],
                     length=6
@@ -610,19 +616,18 @@ screens = [
                     text_open='\uf101',
                     padding=15,
                     widgets=[
-				        widget.Mpris2(
-					        name='spotifyd',
-					        #objname=media_player,
-    				        format = '{xesam:title} - ({xesam:artist})',
-    				        playing_text = ' 契 {track}',
-    				        paused_text  = '  {track}',
-    				        width = 400,
-    				        scroll_delay = 5,
-    				        scroll_interval = 0.25,
-    				        scroll_step = 15,
+                        widget.Mpris2(
+                            name='spotifyd',
+                            format = '{xesam:title} - ({xesam:artist})',
+                            playing_text = ' 契 {track}',
+                            paused_text  = '  {track}',
+                            width = 400,
+                            scroll_delay = 5,
+                            scroll_interval = 0.25,
+                            scroll_step = 15,
                             background=nord['nord10'],
-    				        foreground=nord['nord0'],
-				        ),
+                            foreground=nord['nord0'],
+                        ),
                         widget.PulseVolume(
                             font='FontAwesome',
                             fmt='\uf028 {}',
@@ -648,8 +653,8 @@ screens = [
                         widget.OpenWeather(
                             background=nord['nord15'],
                             foreground=nord['nord0'],
-                            cityid='4198514',
-                            app_key='*****',
+                            cityid=OPENWEATHER_CITI_ID,
+                            app_key=OPENWEATHER_APP_KEY,
                             metric=False),
                         widget.Net(
                             background=nord['nord10'],
@@ -773,19 +778,18 @@ screens = [
                     text_open='\uf101',
                     padding=15,
                     widgets=[
-				        widget.Mpris2(
-					        name='spotifyd',
-					        #objname=media_player,
-    				        format = '{xesam:title} - ({xesam:artist})',
-    				        playing_text = ' 契 {track}',
-    				        paused_text  = '  {track}',
-    				        width = 400,
-    				        scroll_delay = 5,
-    				        scroll_interval = 0.25,
-    				        scroll_step = 15,
+                        widget.Mpris2(
+                            name='spotifyd',
+                            format = '{xesam:title} - ({xesam:artist})',
+                            playing_text = ' 契 {track}',
+                            paused_text  = '  {track}',
+                            width = 400,
+                            scroll_delay = 5,
+                            scroll_interval = 0.25,
+                            scroll_step = 15,
                             background=nord['nord10'],
-    				        foreground=nord['nord0'],
-				        ),
+                            foreground=nord['nord0'],
+                        ),
                         widget.PulseVolume(
                             font='FontAwesome',
                             fmt='\uf028 {}',
@@ -811,8 +815,8 @@ screens = [
                         widget.OpenWeather(
                             background=nord['nord15'],
                             foreground=nord['nord0'],
-                            cityid='4198514',
-                            app_key='*****',
+                            cityid=OPENWEATHER_CITI_ID,
+                            app_key=OPENWEATHER_APP_KEY,
                             metric=False),
                         widget.Net(
                             background=nord['nord10'],
