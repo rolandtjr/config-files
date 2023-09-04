@@ -89,9 +89,6 @@ def get_wallpaper(screen_number):
 
     Returns:
         str: The wallpaper path for the specified screen size.
-
-    Raises:
-        IndexError: If the specified screen number is out of bounds.
     """
     try:
         screens_ = run(
@@ -108,6 +105,8 @@ def get_wallpaper(screen_number):
         size = screens_.stdout.split()[screen_number]
     except IndexError:
         size = screens_.stdout.split()[0]
+    except AttributeError:
+        size = screens_
 
     match size:
         case "3440x1440":
