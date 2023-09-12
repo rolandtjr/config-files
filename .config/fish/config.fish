@@ -14,6 +14,8 @@ set --export XSECURELOCK_AUTH_FOREGROUND_COLOR "#D8DEE9"
 set --export XSECURELOCK_AUTH_SOUNDS 1
 set --export XSECURELOCK_DIM_COLOR "#2E3440"
 set --export XSECURELOCK_NO_COMPOSITE 1
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
 
 if status is-interactive
   source "$HOME/.config/fish/abbreviations.fish"
@@ -26,6 +28,7 @@ if status --is-login
   fish_add_path "$HOME/go/bin"
   fish_add_path "/usr/lib/xsecurelock"
   fish_add_path "$HOME/.local/share/gem/ruby/3.0.0/bin"
+  fish_add_path "$BUN_INSTALL/bin"
   # Check if DISPLAY is set
   if set -q DISPLAY
     xset s 300 5
@@ -40,3 +43,4 @@ if status --is-login
 end
 
 starship init fish | source
+

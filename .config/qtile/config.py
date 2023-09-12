@@ -76,7 +76,7 @@ def parse_task_text(text):
     text = text.replace(" - qutebrowser", "")
     text = text.replace(" - Discord", "")
     text = text.replace(" - Chromium", "")
-    text = text.replace(" - Obsidian v1.3.5", "")
+    text = text.replace(" - Obsidian v1.4.5", "")
     return text
 
 
@@ -486,12 +486,14 @@ screens = [
                             scroll_step=15,
                             background=nord["nord10"],
                             foreground=nord["nord0"],
+                            padding=6,
                         ),
                         widget.PulseVolume(
                             font="FontAwesome",
                             fmt="\uf028 {}",
                             background=nord["nord0"],
                             foreground=nord["nord4"],
+                            padding=6,
                         ),
                     ],
                 ),
@@ -509,24 +511,34 @@ screens = [
                     text_open="\uf101",
                     padding=15,
                     widgets=[
+                        widget.Pomodoro(
+                            background=nord["nord0"],
+                            foreground=nord["nord10"],
+                            color_active=nord["nord10"],
+                            color_inactive=nord["nord4"],
+                            color_break=nord["nord11"],
+                            padding=6,
+                        ),
                         widget.OpenWeather(
                             background=nord["nord15"],
                             foreground=nord["nord0"],
                             cityid=OPENWEATHER_CITI_ID,
                             app_key=OPENWEATHER_APP_KEY,
                             metric=False,
+                            padding=6,
                         ),
-                        widget.Net(background=nord["nord10"], foreground=nord["nord0"], interface="net0"),
-                        widget.Memory(background=nord["nord14"], foreground=nord["nord0"]),
-                        widget.CPU(background=nord["nord13"], foreground=nord["nord0"]),
+                        widget.Net(background=nord["nord10"], foreground=nord["nord0"], interface="net0", padding=6,),
+                        widget.Memory(background=nord["nord14"], foreground=nord["nord0"], padding=6,),
+                        widget.CPU(background=nord["nord13"], foreground=nord["nord0"], padding=6,),
                         widget.ThermalSensor(
                             background=nord["nord13"],
                             foreground=nord["nord0"],
                             tag_sensor="Package id 0",
                             format="{temp:.0f}{unit}",
+                            padding=6,
                         ),
                         widget.DF(
-                            background=nord["nord12"], foreground=nord["nord0"], warn_space=40, visible_on_warn=True
+                            background=nord["nord12"], foreground=nord["nord0"], warn_space=40, visible_on_warn=True, padding=6,
                         ),
                         widget.DF(
                             background=nord["nord12"],
@@ -534,12 +546,14 @@ screens = [
                             partition="/home",
                             warn_space=40,
                             visible_on_warn=True,
+                            padding=6,
                         ),
                         widget.ThermalSensor(
                             background=nord["nord12"],
                             foreground=nord["nord0"],
                             tag_sensor="Composite",
                             format="NVME: {temp:.0f}{unit}",
+                            padding=6,
                         ),
                         widget.Spacer(background=nord["nord0"], length=8),
                     ],
