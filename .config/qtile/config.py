@@ -605,10 +605,20 @@ screens = [
                     background=nord["nord0"],
                     length=4,
                 ),
+                widget.Image(
+                    background=nord["nord0"],
+                    filename=f"{images_dir}rtj_Logo-02.png",
+                    margin=2,
+                    mouse_callbacks={"Button1": lazy.spawn(rofi)},
+                ),
+                widget.Spacer(
+                    background=nord["nord0"],
+                    length=2,
+                ),
                 widget.WindowCount(
                     font="Font Awesome 6 Brands",
                     background=nord["nord0"],
-                    foreground=nord["nord4"],
+                    foreground=nord["nord9"],
                 ),
                 widget.TaskList(
                     background=nord["nord0"],
@@ -754,7 +764,7 @@ screens = [
                 widget.WindowCount(
                     font="Font Awesome 6 Brands",
                     background=nord["nord0"],
-                    foreground=nord["nord4"],
+                    foreground=nord["nord9"],
                 ),
                 widget.TaskList(
                     background=nord["nord0"],
@@ -881,9 +891,9 @@ screens = [
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Drag(["control"], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag(["control"], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click(["control"], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
