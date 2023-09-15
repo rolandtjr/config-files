@@ -37,7 +37,7 @@ bjendal = "alacritty -e /home/roland/.local/bin/bjendal"
 lumar = "alacritty -e /home/roland/.local/bin/lumar"
 set_audio_sink = "/home/roland/.local/bin/set_audio_sink"
 cmatrix = "alacritty -e cmatrix"
-rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 12" -show drun -icon-theme "Papirus" -show-icons'
+rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 12" -show drun -icon-theme "Nordzy-dark" -show-icons'
 qtile_dir = "/home/roland/.config/qtile/"
 wallpaper_dir = "/home/roland/.config/qtile/wallpaper/"
 images_dir = "/home/roland/.config/qtile/images/"
@@ -76,7 +76,7 @@ def parse_task_text(text):
     text = text.replace(" - qutebrowser", "")
     text = text.replace(" - Discord", "")
     text = text.replace(" - Chromium", "")
-    text = text.replace(" - Obsidian v1.4.5", "")
+    text = text.replace(" - Obsidian v1.4.12", "")
     return text
 
 
@@ -909,12 +909,12 @@ floating_layout = layout.Floating(
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(wm_class="display_hotkeys"),
-        Match(wm_class="dhk"),
-        Match(wm_class="pinentry-gtk-2"),  # pin entry gpg
         Match(title="branchdialog"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class="pinentry-gtk-2"),  # pin entry gpg
+        Match(wm_class="display_hotkeys"), # display hot keys
+        Match(wm_class="dhk"), # display hot keys
         Match(title="Friends List"),  # Steam Friends List
     ],
     border_width=4,
