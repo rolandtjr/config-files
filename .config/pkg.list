@@ -16,6 +16,8 @@ bind
 bison
 bottom
 bridge-utils
+brother-mfc-l2750dw
+brscan4
 caddy
 ccid
 check
@@ -35,8 +37,8 @@ dust
 dwarffortress
 efibootmgr
 eva
-exa
 expac
+eza
 fail2ban
 fakeroot
 fd
@@ -155,7 +157,6 @@ qemu-full
 qt5-styleplugins
 qt6gtk2
 qtile
-qtile-extras-git
 qutebrowser
 ranger
 reflector
@@ -167,7 +168,9 @@ setcolors-git
 shell-color-scripts
 shellcheck
 signal-desktop
+simple-scan
 sof-firmware
+spotify-player
 spotify-tui
 spotifyd
 starship
@@ -201,6 +204,7 @@ ttf-font-awesome
 ttf-nerd-fonts-symbols
 typos
 unzip
+vagrant
 valgrind
 vifm
 vim
