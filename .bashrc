@@ -8,24 +8,19 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 [[ $- != *i* ]] && return
 
 # ls aliases
-alias ls='exa --color=auto'
-alias sl='exa --color=auto'
-alias ll='exa -la --color=auto'
+alias ls='eza --color=auto'
+alias sl='eza --color=auto'
+alias ll='eza -la --color=auto'
 
 # git aliases
 alias gss='git status'
 alias gcm='git commit -m'
-alias config='git --git-dir=$HOME/config-files/ --work-tree=$HOME'
+alias cf='git --git-dir=$HOME/config-files/ --work-tree=$HOME'
 
 # aliases
 alias ..='cd ..'
 alias vi='vim'
 alias ip='ip -color=auto'
-
-# vi key bindings
-set -o vi
-
-PS1='[\u@\h \W]\$ '
 
 # starship prompt
 eval "$(starship init bash)"
