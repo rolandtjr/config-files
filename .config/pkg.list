@@ -69,6 +69,7 @@ intel-ucode
 irssi
 jc
 jdk-openjdk
+john
 jq
 kitty
 lesspipe
@@ -82,6 +83,7 @@ libisoburn
 libreoffice-fresh
 libselinux
 libsepol
+libvirt
 linux
 linux-firmware
 linux-lts
@@ -138,6 +140,8 @@ pulseaudio
 pulseaudio-alsa
 pulseaudio-jack
 pulseaudio-module-xrdp
+pycharm-community-edition
+pyenv
 python-aiohttp
 python-aiosmtpd
 python-black
@@ -196,6 +200,7 @@ texlive-music
 texlive-pictures
 texlive-pstricks
 texlive-publishers
+tk
 tmux
 toilet
 tokei

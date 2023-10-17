@@ -28,6 +28,7 @@ Plug 'xuhdev/vim-latex-live-preview'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'takac/vim-hardtime'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 colorscheme nord

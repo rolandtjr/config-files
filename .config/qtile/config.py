@@ -104,13 +104,16 @@ def get_wallpaper(screen_number):
     try:
         size = screens_.stdout.split()[screen_number]
     except IndexError:
-        size = screens_.stdout.split()[0]
+        try:
+            size = screens_.stdout.split()[0]
+        except IndexError:
+            size = "1920x1080"
     except AttributeError:
         size = screens_
 
     match size:
         case "3440x1440":
-            wallpaper = f"{wallpaper_dir}p3_3440x1440.png"
+            wallpaper = f"{wallpaper_dir}p6_3440x1440.png"
         case "1920x1080":
             wallpaper = f"{wallpaper_dir}p3_1920x1080.png"
         case "3840x1080":
@@ -472,7 +475,7 @@ screens = [
                     close_button_location="right",
                     text_closed="\uf100",
                     text_open="\uf101",
-                    padding=15,
+                    padding=4,
                     widgets=[
                         widget.Mpris2(
                             name="spotifyd",
@@ -497,10 +500,6 @@ screens = [
                         ),
                     ],
                 ),
-                widget.Spacer(
-                    background=nord["nord0"],
-                    length=4,
-                ),
                 widget.WidgetBox(
                     name="widget_box_1",
                     background=nord["nord0"],
@@ -509,7 +508,7 @@ screens = [
                     close_button_location="right",
                     text_closed="\uf100",
                     text_open="\uf101",
-                    padding=15,
+                    padding=4,
                     widgets=[
                         widget.Pomodoro(
                             background=nord["nord0"],
@@ -568,7 +567,7 @@ screens = [
                     close_button_location="right",
                     text_closed="\uf100",
                     text_open="\uf101",
-                    padding=15,
+                    padding=4,
                     widgets=[
                         widget.QuickExit(
                             background=nord["nord11"], foreground=nord["nord0"], fontsize=24, default_text="\uf1e2"

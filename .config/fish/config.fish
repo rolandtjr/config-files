@@ -42,5 +42,6 @@ if status --is-login
   end
 end
 
+pyenv init - | source
 starship init fish | source
 
