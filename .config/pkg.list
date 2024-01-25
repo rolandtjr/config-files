@@ -2,6 +2,7 @@ alacritty
 alsa-utils
 anki
 ansible
+antiword
 arc-gtk-theme
 asciidoctor
 autoconf
@@ -42,6 +43,7 @@ eza
 fail2ban
 fakeroot
 fd
+feh
 figlet
 filezilla
 firefox
@@ -107,6 +109,7 @@ nasm
 nemo
 neofetch
 neovim
+nfs-utils
 nim
 nmap
 noto-fonts
@@ -132,6 +135,8 @@ pastel
 patch
 pavucontrol
 pcsc-tools
+perl-archive-zip
+perl-image-exiftool
 pfetch
 picom-animations-git
 pkgconf
@@ -145,21 +150,23 @@ pyenv
 python-aiohttp
 python-aiosmtpd
 python-black
+python-cairocffi
 python-dbus-next
 python-heatclient
 python-ipykernel
 python-mako
 python-openstackclient
+python-pdftotext
 python-pip
 python-pycodestyle
 python-pylint
 python-pynvim
 python-requests
 python-ruff
+python-xcffib
 qalculate-qt
 qemu-full
 qt5-styleplugins
-qt6gtk2
 qtile
 qutebrowser
 ranger
@@ -208,6 +215,7 @@ ts-node
 ttf-font-awesome
 ttf-nerd-fonts-symbols
 typos
+ugrep
 unzip
 vagrant
 valgrind
@@ -226,6 +234,10 @@ xclip
 xdotool
 xf86-video-vesa
 xh
+xmobar
+xmonad
+xmonad-contrib
+xmonad-utils
 xorg-bdftopcf
 xorg-docs
 xorg-font-util

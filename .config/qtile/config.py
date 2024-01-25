@@ -27,7 +27,7 @@ from keys import OPENWEATHER_APP_KEY, OPENWEATHER_CITI_ID
 
 mod = "mod4"
 terminal = "alacritty"
-opaque_config = "--config-file /home/roland/.config/alacritty/alacritty-opaque.yml"
+opaque_config = "--config-file /home/roland/.config/alacritty/alacritty-opaque.toml"
 terminal_opaque = f"alacritty {opaque_config}"
 qtile_config = f"alacritty {opaque_config} -e nvim /home/roland/.config/qtile/config.py"
 ipython = f"alacritty {opaque_config} -e ipython"
@@ -642,7 +642,7 @@ screens = [
                     close_button_location="right",
                     text_closed="\uf100",
                     text_open="\uf101",
-                    padding=15,
+                    padding=0,
                     widgets=[
                         widget.Mpris2(
                             name="spotifyd",
@@ -676,7 +676,7 @@ screens = [
                     close_button_location="right",
                     text_closed="\uf100",
                     text_open="\uf101",
-                    padding=15,
+                    padding=0,
                     widgets=[
                         widget.OpenWeather(
                             background=nord["nord15"],
@@ -723,7 +723,7 @@ screens = [
                     close_button_location="right",
                     text_closed="\uf100",
                     text_open="\uf101",
-                    padding=15,
+                    padding=4,
                     widgets=[
                         widget.QuickExit(
                             background=nord["nord11"], foreground=nord["nord0"], fontsize=24, default_text="\uf1e2"
@@ -939,8 +939,8 @@ wl_input_rules = None
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-# wmname = "LG3D"
-wmname = f"qtile {VERSION}"
+wmname = "LG3D"
+# wmname = f"qtile {VERSION}"
 
 
 def write_hot_keys():
