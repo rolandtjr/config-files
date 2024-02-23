@@ -179,6 +179,10 @@ keys = [
     Key([mod, "shift"], "y", lazy.spawn(hotkeys), desc="Show Hotkeys"),
     Key([mod], "n", lazy.screen.next_group(skip_empty=True), desc="Switch to next group"),
     Key([mod, "shift"], "n", lazy.screen.prev_group(skip_empty=True), desc="Switch to previous group"),
+    # Media Keys
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower Volume by 5%"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise Volume by 5%"),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle"), desc="Toggle Mute"),
     # LAUNCH chord
     KeyChord(
         [mod],
