@@ -152,6 +152,9 @@ class TabbedWindow(QMainWindow):
     self.toggle_key = QShortcut(QKeySequence("Alt+n"), self)
     self.toggle_key.activated.connect(self.toggle_tabs)
 
+    self.exit_key = QShortcut(QKeySequence("Alt+w"), self)
+    self.exit_key.activated.connect(sys.exit)
+
   def toggle_tabs(self):
     current_index = self.tab_widget.currentIndex()
     num_tabs = self.tab_widget.count()
