@@ -183,6 +183,9 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower Volume by 5%"),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -D pulse sset Master 5%+"), desc="Raise Volume by 5%"),
     Key([], "XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle"), desc="Toggle Mute"),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), desc="Play/Pause"),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Next"),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), desc="Previous"),
     # LAUNCH chord
     KeyChord(
         [mod],
@@ -225,6 +228,17 @@ keys = [
                 lazy.widget["widget_box_2"].toggle(),
                 lazy.widget["widget_box_3"].toggle(),
                 desc="Toggle Widget Boxes",
+            ),
+            Key(
+                [],
+                "d",
+                lazy.widget["media_box_1"].toggle(),
+                lazy.widget["media_box_2"].toggle(),
+                lazy.widget["media_box_3"].toggle(),
+                lazy.widget["widget_box_1"].toggle(),
+                lazy.widget["widget_box_2"].toggle(),
+                lazy.widget["widget_box_3"].toggle(),
+                desc="Toggle All Boxes",
             ),
             Key([], "1", lazy.widget["widget_box_1"].toggle(), desc="Toggle Widget Box 1"),
             Key([], "2", lazy.widget["widget_box_2"].toggle(), desc="Toggle Widget Box 2"),
