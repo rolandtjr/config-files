@@ -140,6 +140,7 @@ perl-image-exiftool
 pfetch
 picom-animations-git
 pkgconf
+playerctl
 plocate
 pulseaudio
 pulseaudio-alsa
@@ -167,6 +168,7 @@ python-xcffib
 qalculate-qt
 qemu-full
 qt5-styleplugins
+qt5-styleplugins-debug
 qtile
 qutebrowser
 ranger
@@ -219,12 +221,15 @@ ugrep
 unzip
 vagrant
 valgrind
+via-bin
+via-bin-debug
 vifm
 vim
 virtualbox-ext-oracle
 virtualbox-guest-iso
 virtualbox-host-modules-arch
 visual-studio-code-bin
+visual-studio-code-bin-debug
 vlc
 wget
 which
