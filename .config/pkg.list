@@ -184,6 +184,7 @@ signal-desktop
 simple-scan
 sof-firmware
 spotify-player
+spotify-player-debug
 spotify-tui
 spotifyd
 starship

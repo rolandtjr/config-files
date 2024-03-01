@@ -76,7 +76,7 @@ def parse_task_text(text):
     text = text.replace(" - qutebrowser", "")
     text = text.replace(" - Discord", "")
     text = text.replace(" - Chromium", "")
-    text = text.replace(" - Obsidian v1.4.12", "")
+    text = text.replace(" - Obsidian v1.5.8", "")
     return text
 
 
