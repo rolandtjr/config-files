@@ -35,6 +35,7 @@ python = f"alacritty {opaque_config} -e python"
 vpn_vta = "alacritty -e /home/roland/.local/bin/vpn"
 bjendal = "alacritty -e /home/roland/.local/bin/bjendal"
 lumar = "alacritty -e /home/roland/.local/bin/lumar"
+vax = "alacritty -e /home/roland/.local/bin/vax"
 set_audio_sink = "/home/roland/.local/bin/set_audio_sink"
 cmatrix = "alacritty -e cmatrix"
 rofi = 'rofi -combi-modi window,drun,ssh -theme nord -font "hack 12" -show drun -icon-theme "Nordzy-dark" -show-icons'
@@ -132,8 +133,6 @@ def get_wallpaper(screen_number):
 
 # Keys
 keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -198,6 +197,7 @@ keys = [
             Key([], "v", lazy.group["scratchpad"].dropdown_toggle("vpn"), desc="Launch vpn"),
             Key([], "b", lazy.group["scratchpad"].dropdown_toggle("bjendal"), desc="Launch xrdp: bjendal"),
             Key([], "l", lazy.group["scratchpad"].dropdown_toggle("lumar"), desc="Launch xrdp: lumar"),
+            Key([], "x", lazy.group["scratchpad"].dropdown_toggle("vax"), desc="Launch xrdp: vax"),
             Key([], "s", lazy.spawn("passmenu"), desc="Launch pass"),
             Key([], "r", lazy.run_extension(extension.DmenuRun(dmenu_prompt="\uf101")), desc="Launch dmenu"),
             Key([], "m", lazy.spawn(cmatrix), desc="Launch matrix"),
@@ -370,6 +370,14 @@ groups.extend(
                 DropDown(
                     "lumar",
                     lumar,
+                    on_focus_lost_hide=True,
+                    opacity=1.0,
+                    height=0.5,
+                    y=0.1,
+                ),
+                DropDown(
+                    "vax",
+                    vax,
                     on_focus_lost_hide=True,
                     opacity=1.0,
                     height=0.5,
