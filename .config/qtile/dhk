@@ -62,7 +62,6 @@ class TabbedWindow(QMainWindow):
       lines = file.readlines()
     length = len(lines)
 
-    # Add the numbers 1-100 to the layout
     column = 0
     row = 0
     switch = False
@@ -100,7 +99,7 @@ class TabbedWindow(QMainWindow):
           column -= 1
           continue
       else:
-        label = QLabel(lines[i].strip())
+        label = QLabel(lines[i].strip().lstrip("+").strip())
         layout1.addWidget(label, row, column)
         row += 1
 
@@ -122,7 +121,6 @@ class TabbedWindow(QMainWindow):
       lines = file.readlines()
     length = len(lines)
 
-    # Add the numbers 101-200 to the layout
     column = 0
     row = 0
     for i in range(length):
