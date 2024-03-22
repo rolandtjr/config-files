@@ -10,7 +10,7 @@ if [ "$DISPLAY" = ":0" ]; then
   # if ! pactl set-default-sink alsa_output.0.hdmi-stereo; then
     # pactl set-default-sink alsa_output.1.hdmi-stereo
   # fi
-  pactl set-default-sink alsa_output.1.analog-stereo
+  pactl set-default-sink alsa_output.0.analog-stereo
   echo "$DISPLAY set audio"
 elif [ "$DISPLAY" = ":10.0" ]; then
   pactl set-default-sink xrdp-sink

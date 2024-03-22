@@ -28,6 +28,8 @@ Plug 'xuhdev/vim-latex-live-preview'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'takac/vim-hardtime'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'github/copilot.vim'
 call plug#end()
 
 colorscheme nord
@@ -39,3 +41,18 @@ let g:lightline = {
 autocmd Filetype tex setl updatetime=1
 let g:livepreview_previewer = 'zathura'
 let g:hardtime_default_on = 1
+
+let g:copilot_enable = 1
+let g:copilot_filetypes = {
+            \ 'python': v:true,
+            \ 'c': v:true,
+            \ 'cpp': v:true,
+            \ 'java': v:true,
+            \ 'javascript': v:true,
+            \ 'typescript': v:true,
+            \ 'go': v:true,
+            \ 'rust': v:true,
+            \ 'html': v:true,
+            \ 'css': v:true,
+            \ 'perl': v:true
+            \}
