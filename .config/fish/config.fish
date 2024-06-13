@@ -17,6 +17,8 @@ set --export XSECURELOCK_NO_COMPOSITE 1
 set --export XSECURELOCK_DIM_TIME_MS 10000
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
+# prompt_toolkit
+set --export PROMPT_TOOLKIT_COLOR_DEPTH "DEPTH_24_BIT"
 
 if status is-interactive
   source "$HOME/.config/fish/abbreviations.fish"

@@ -30,6 +30,7 @@ terminal = "alacritty"
 opaque_config = "--config-file /home/roland/.config/alacritty/alacritty-opaque.toml"
 terminal_opaque = f"alacritty {opaque_config}"
 qtile_config = f"alacritty {opaque_config} -e nvim /home/roland/.config/qtile/config.py"
+nvim_config = f"alacritty {opaque_config} -e nvim /home/roland/.config/nvim/init.lua"
 ipython = f"alacritty {opaque_config} -e ipython"
 python = f"alacritty {opaque_config} -e python"
 vpn_vta = "alacritty -e /home/roland/.local/bin/vpn"
@@ -194,6 +195,7 @@ keys = [
             Key([], "i", lazy.group["scratchpad"].dropdown_toggle("ipython"), desc="Launch IPython"),
             Key([], "p", lazy.group["scratchpad"].dropdown_toggle("python"), desc="Launch python"),
             Key([], "q", lazy.group["scratchpad"].dropdown_toggle("qtile-config"), desc="Launch qtile config"),
+            Key([], "n", lazy.group["scratchpad"].dropdown_toggle("nvim-config"), desc="Launch qtile config"),
             Key([], "v", lazy.group["scratchpad"].dropdown_toggle("vpn"), desc="Launch vpn"),
             Key([], "b", lazy.group["scratchpad"].dropdown_toggle("bjendal"), desc="Launch xrdp: bjendal"),
             Key([], "l", lazy.group["scratchpad"].dropdown_toggle("lumar"), desc="Launch xrdp: lumar"),
@@ -344,6 +346,16 @@ groups.extend(
                 DropDown(
                     "qtile-config",
                     qtile_config,
+                    on_focus_lost_hide=False,
+                    opacity=1.0,
+                    height=0.9,
+                    width=0.5,
+                    y=0.05,
+                    x=0.25,
+                ),
+                DropDown(
+                    "nvim-config",
+                    nvim_config,
                     on_focus_lost_hide=False,
                     opacity=1.0,
                     height=0.9,
@@ -505,10 +517,11 @@ screens = [
                     widgets=[
                         widget.Mpris2(
                             name="spotifyd",
+                            font="Font Awesome",
                             # objname=media_player,
                             format="{xesam:title} - ({xesam:artist})",
-                            playing_text=" 契 {track}",
-                            paused_text="  {track}",
+                            playing_text=" \uf04b {track}",
+                            paused_text=" \uf04c {track}",
                             width=400,
                             scroll_delay=5,
                             scroll_interval=0.25,
